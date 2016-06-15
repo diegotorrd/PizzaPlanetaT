@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shadow">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:background="@drawable/main_header_selector"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/americana"
+            android:layout_weight="10"
+            android:id="@+id/imgE"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Pedido #"
+            android:id="@+id/txtPedidoItem"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="direccion"
+            android:id="@+id/txtDireccion"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="nombre"
+            android:id="@+id/txtNombre"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:id="@+id/linE"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="10dp"
+        >
+        <ImageView
+            android:layout_width="0dp"
+            android:id="@+id/btnPlusEquipo"
+            android:layout_height="wrap_content"
+            android:src="@drawable/scooter"
+            android:layout_weight="1"
+            android:background="#FFFFFF"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cart"
+            android:background="#FFFFFF"
+            android:layout_weight="1"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
