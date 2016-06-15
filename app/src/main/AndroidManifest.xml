@@ -9,13 +9,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Grid.GridActivityT" />
         <activity android:name=".Login.Login2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".listado.ListadoPizzasActivity" />
+        <activity android:name=".Grid.GridActivityT">
+
         </activity>
     </application>
 

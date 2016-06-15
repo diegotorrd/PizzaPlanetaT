@@ -1,9 +1,6 @@
 package com.ulima.sw.pizzaplanetad.Login;
 
-import android.widget.Toast;
-
 import com.ulima.sw.pizzaplanetad.Remote.PizzaPService;
-import com.ulima.sw.pizzaplanetad.beans.Usuario;
 import com.ulima.sw.pizzaplanetad.beans.Usuario;
 
 import retrofit2.Call;
@@ -43,5 +40,6 @@ public class LoginPresenterImp implements LoginPresenter {
 
             }
         });
+
     }
 }

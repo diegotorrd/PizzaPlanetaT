@@ -1,12 +1,14 @@
 package com.ulima.sw.pizzaplanetad.Login;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ulima.sw.pizzaplanetad.Grid.GridActivityT;
 import com.ulima.sw.pizzaplanetad.R;
 import com.ulima.sw.pizzaplanetad.beans.Usuario;
 
@@ -48,11 +50,12 @@ public class Login2Activity extends AppCompatActivity implements LoginView{
     @Override
     public void callActiviy(String resp) {
         if (resp.equalsIgnoreCase("1")){
-            //Intent intent = new Intent(this, GridActivityT.class);
-            //eteUsuario.setText(null);
-            //etePassword.setText(null);
-            //startActivity(intent);
             Toast.makeText(this,"Credenciales correctas",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, GridActivityT.class);
+            eteUsuario.setText(null);
+            etePassword.setText(null);
+            startActivity(intent);
+
         }else{
             Toast.makeText(this, "Credenciales Erradas", Toast.LENGTH_SHORT).show();
 

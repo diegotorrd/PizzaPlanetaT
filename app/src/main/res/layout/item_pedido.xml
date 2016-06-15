@@ -67,13 +67,14 @@
         >
         <ImageView
             android:layout_width="0dp"
-            android:id="@+id/btnPlusEquipo"
+            android:id="@+id/moto"
             android:layout_height="wrap_content"
             android:src="@drawable/scooter"
             android:layout_weight="1"
             android:background="#FFFFFF"/>
         <ImageView
             android:layout_width="0dp"
+            android:id="@+id/cart"
             android:layout_height="wrap_content"
             android:src="@drawable/cart"
             android:background="#FFFFFF"
