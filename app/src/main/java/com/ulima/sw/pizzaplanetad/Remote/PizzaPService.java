@@ -1,7 +1,7 @@
 package com.ulima.sw.pizzaplanetad.Remote;
 
-import com.ulima.sw.pizzaplanetad.beans.Info;
-import com.ulima.sw.pizzaplanetad.beans.Pedido;
+import com.ulima.sw.pizzaplanetad.beans.pedido.Info;
+import com.ulima.sw.pizzaplanetad.beans.pedido.ProductoPedido;
 
 import java.util.List;
 
@@ -14,31 +14,24 @@ import retrofit2.http.Query;
  */
 
     public interface PizzaPService {
-        @GET("loginTrabajador")
-        Call<String> obtenerLogin(@Query("usuario") String usuario, @Query("password") String password);
-
-        @GET("getPedidos")
-        Call<List<Pedido>> obtenerPedidos();
+    @GET("loginTrabajador")
+    Call<String> obtenerLogin(@Query("usuario") String usuario, @Query("password") String password);
 
     @GET("getInfo")
-    Call<List<Info>> getInfo();
+    Call<List<Info>> getInfo(@Query("username") String usuario);
 
     @GET("actualizarEstado")
-    Call<String> actualizarEstado(@Query("estado") int idestado,@Query("pedido") int idPedido );
+    Call<Integer> actualizarEstado(@Query("estado") int idestado,@Query("pedido") int idPedido,@Query("username") String usuario );
+
+    @GET("obtenerPedido")
+    Call<List<ProductoPedido>> obtenerPedido(@Query("pedido") int idPedido );
 
 
-        //@GET("equipos")
-        //Call<List<Equipo>> obtenerEquipos();
-
-        //@GET("equipos/{id}")
-        //Call<Equipo> obtenerEquipoID(@Path("id") int id);
 
 
-        //@GET("alumnos?sin_equipo=true")
-        //Call<List<Alumno>> obtenerAlumnosSEqu();
 
-        //@POST("equipos/{id}/{codigo_alumno}")
-        //Call<Mensaje> agregarAlumnoaEquipo(@Path("id") int id, @Path("codigo_alumno") String codigo);
+
+
     }
 
 

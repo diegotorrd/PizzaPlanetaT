@@ -1,7 +1,7 @@
 package com.ulima.sw.pizzaplanetad.Login;
 
 
-import com.ulima.sw.pizzaplanetad.beans.Usuario;
+import com.ulima.sw.pizzaplanetad.beans.usuario.Usuario;
 
 /**
  * Created by fixt on 11/05/16.

@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".listado.ListadoPizzasActivity" />
+        <activity android:name=".listado.ListadoProductosActivity" />
         <activity android:name=".Grid.GridActivityT">
 
         </activity>

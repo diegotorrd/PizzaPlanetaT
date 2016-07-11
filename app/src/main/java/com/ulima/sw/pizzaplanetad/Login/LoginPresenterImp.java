@@ -1,7 +1,7 @@
 package com.ulima.sw.pizzaplanetad.Login;
 
 import com.ulima.sw.pizzaplanetad.Remote.PizzaPService;
-import com.ulima.sw.pizzaplanetad.beans.Usuario;
+import com.ulima.sw.pizzaplanetad.beans.usuario.Usuario;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,12 +24,12 @@ public class LoginPresenterImp implements LoginPresenter {
 
     @Override
     public void obtenerLoginU(Usuario user) {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://pizzaplanetac.mybluemix.net/webresources/generic/")
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://pizzaplanetad.mybluemix.net/webresources/generic/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         PizzaPService service = retrofit.create(PizzaPService.class);
-        service.obtenerLogin(user.getUsuario(),user.getPassword()).enqueue(new Callback<String>() {
+        service.obtenerLogin(user.getUsername(),user.getPassword()).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 lView.callActiviy(response.body());

@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ulima.sw.pizzaplanetad.listado.ListadoPizzasActivity"
+    tools:context=".listado.ListadoProductosActivity"
     android:background="#FFFFFF">
 
     <com.github.ksoichiro.android.observablescrollview.ObservableListView
-        android:id="@+id/lstPizza"
+        android:id="@+id/lstProductos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/pizzaitm"/>
+        tools:listitem="@layout/productoitm"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
 </RelativeLayout>

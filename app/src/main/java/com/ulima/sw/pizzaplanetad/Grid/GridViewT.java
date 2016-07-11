@@ -1,6 +1,6 @@
 package com.ulima.sw.pizzaplanetad.Grid;
 
-import com.ulima.sw.pizzaplanetad.beans.Info;
+import com.ulima.sw.pizzaplanetad.beans.pedido.Info;
 
 import java.util.List;
 
@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface GridViewT {
     public void setPresenter(GridPresenter presenter);
-    public void mostrarEquipos(List<Info> pedidos);
+    public void mostrarPedidos(List<Info> pedidos);
+    public void toAst(int num);
 }

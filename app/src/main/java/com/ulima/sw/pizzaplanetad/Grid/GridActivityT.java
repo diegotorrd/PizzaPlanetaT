@@ -1,6 +1,7 @@
 package com.ulima.sw.pizzaplanetad.Grid;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -8,13 +9,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableGridView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.ulima.sw.pizzaplanetad.Adapter.ListadoPedidosAdapter;
 import com.ulima.sw.pizzaplanetad.R;
-import com.ulima.sw.pizzaplanetad.beans.Info;
+import com.ulima.sw.pizzaplanetad.beans.pedido.Info;
+import com.ulima.sw.pizzaplanetad.listado.ListadoProductosActivity;
 
 import java.util.List;
 
@@ -25,6 +30,7 @@ public class GridActivityT extends AppCompatActivity implements GridViewT,Observ
     private ObservableGridView GridPedidos;
     private GridPresenter GPresenter;
     private ListadoPedidosAdapter adapter;
+    public static String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,9 @@ public class GridActivityT extends AppCompatActivity implements GridViewT,Observ
         setTitle("Pedidos");
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intentPasado = getIntent();
+        usuario = intentPasado.getStringExtra("usuario");
 
         setContentView(R.layout.activity_grid);
         dialog = new ProgressDialog(this);
@@ -54,7 +63,7 @@ public class GridActivityT extends AppCompatActivity implements GridViewT,Observ
         });
 
         setPresenter(new GridPresenterImp(this));
-        GPresenter.obtenerPedidos();
+        GPresenter.obtenerPedidos(usuario);
     }
 
     @Override
@@ -63,20 +72,39 @@ public class GridActivityT extends AppCompatActivity implements GridViewT,Observ
     }
 
     @Override
-    public void mostrarEquipos(final List<Info> pedidos) {
+    public void mostrarPedidos(final List<Info> pedidos) {
         adapter = new ListadoPedidosAdapter(pedidos,this);
         GridPedidos.setAdapter(adapter);
         dialog.dismiss();
-//        GridPedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(GridActivityT.this, ListadoPizzasActivity.class);
-//                intent.putExtra("pizzas",(Serializable)pedidos.get(position).getPizzas());
-//                startActivity(intent);
-//
-//            }
-//
-//        });
+
+
+        GridPedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                Intent intent = new Intent(GridActivityT.this,ListadoProductosActivity.class);
+                intent.putExtra("id",pedidos.get(position).getId());
+                startActivity(intent);
+
+            }
+        });
+
+    }
+
+    public void cambioEstado(int idEstado, int idPedido, String usuario){
+        GPresenter.cambiarEstado(idEstado,idPedido,usuario);
+    }
+    @Override
+    public void toAst(int num) {
+        switch(num){
+            case 3:
+                Toast.makeText(this, "En Camino", Toast.LENGTH_SHORT).show();
+                GPresenter.obtenerPedidos(usuario);
+                break;
+            case 4:
+                Toast.makeText(this, "Entregado", Toast.LENGTH_SHORT).show();
+                GPresenter.obtenerPedidos(usuario);
+                break;
+        }
 
     }
 
@@ -84,7 +112,7 @@ public class GridActivityT extends AppCompatActivity implements GridViewT,Observ
     public void refreshItems() {
         // Load items
         // ...
-        GPresenter.obtenerPedidos();
+        GPresenter.obtenerPedidos(usuario);
         // Load complete
         onItemsLoadComplete();
     }
@@ -141,5 +169,27 @@ public class GridActivityT extends AppCompatActivity implements GridViewT,Observ
         return super.onOptionsItemSelected(item);
     }
 
+    public static String getUsuario() {
+        return usuario;
+    }
+
+    public static void setUsuario(String usuario) {
+        GridActivityT.usuario = usuario;
+    }
+
+    /*public void cabiarCamino(View view){
+        TextView id = (TextView) findViewById(R.id.idPedido);
+
+        GPresenter.cambiarEstado(3,Integer.parseInt(id.getText().toString()),usuario);
+
+    }
+
+    public void cabiarEntregado(View view){
+        TextView id = (TextView) findViewById(R.id.idPedido);
+
+        GPresenter.cambiarEstado(4,Integer.parseInt(id.getText().toString()),usuario);
+
+    }
+*/
 
 }

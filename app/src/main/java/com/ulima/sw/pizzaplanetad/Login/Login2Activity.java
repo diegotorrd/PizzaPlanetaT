@@ -10,12 +10,13 @@ import android.widget.Toast;
 
 import com.ulima.sw.pizzaplanetad.Grid.GridActivityT;
 import com.ulima.sw.pizzaplanetad.R;
-import com.ulima.sw.pizzaplanetad.beans.Usuario;
+import com.ulima.sw.pizzaplanetad.beans.usuario.Usuario;
 
 public class Login2Activity extends AppCompatActivity implements LoginView{
     private LoginPresenter lPresenter;
     private EditText eteUsuario, etePassword;
     private ProgressDialog dialog;
+    private Usuario gusuario;
 
 
     @Override
@@ -24,6 +25,7 @@ public class Login2Activity extends AppCompatActivity implements LoginView{
         setContentView(R.layout.activity_login2);
         eteUsuario = (EditText) findViewById(R.id.txtUsuario);
         etePassword = (EditText) findViewById(R.id.txtContra);
+        gusuario= new Usuario();
 
     }
 
@@ -36,10 +38,11 @@ public class Login2Activity extends AppCompatActivity implements LoginView{
         dialog.show();
         String usuario = eteUsuario.getText().toString().trim();
         String password = etePassword.getText().toString();
-        Usuario user= new Usuario(usuario, password);
+        gusuario.setUsername(usuario);
+        gusuario.setPassword(password);
         setPresenter(new LoginPresenterImp(this));
 
-        lPresenter.obtenerLoginU(user);
+        lPresenter.obtenerLoginU(gusuario);
     }
 
     @Override
@@ -52,6 +55,7 @@ public class Login2Activity extends AppCompatActivity implements LoginView{
         if (resp.equalsIgnoreCase("1")){
             Toast.makeText(this,"Credenciales correctas",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, GridActivityT.class);
+            intent.putExtra("usuario",gusuario.getUsername());
             eteUsuario.setText(null);
             etePassword.setText(null);
             startActivity(intent);

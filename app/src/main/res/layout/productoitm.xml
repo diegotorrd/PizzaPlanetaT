@@ -6,21 +6,20 @@
     android:background="#FFFFFF">
 
     <ImageView
-        android:id="@+id/imgpizza"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/americana"
-        android:scaleType="fitXY"
-        />
+        android:id="@+id/icon_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_notification_overlay"
+        android:layout_centerVertical="true"/>
+
     <LinearLayout
+        android:id="@+id/lay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:layout_toRightOf="@id/imgpizza"
-        android:layout_marginLeft="10dp">
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/icon_red">
         <TextView
             android:id="@+id/txtOrden"
             android:layout_width="wrap_content"
@@ -36,12 +35,20 @@
             android:textSize="20dp"
             />
         <TextView
-            android:id="@+id/txtTam"
+            android:id="@+id/txtCantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tamaño: "
+            android:text="Cantidad: "
             android:textSize="20dp"
             />
+        <TextView
+            android:id="@+id/txtPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio: "
+            android:textSize="20dp"
+            />
+
     </LinearLayout>
 
 </RelativeLayout>

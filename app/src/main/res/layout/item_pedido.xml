@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shadow">
+    android:background="@drawable/shadow"
+    android:descendantFocusability="blocksDescendants">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical" android:layout_width="match_parent"
@@ -42,6 +43,18 @@
             android:layout_marginBottom="5dp"
             android:textColor="#FFFFFF"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="distrito"
+            android:id="@+id/txtDistrito"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -52,6 +65,32 @@
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"
             android:textColor="#FFFFFF"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="monto"
+            android:id="@+id/txtMonto"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/monto"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            android:text="idpedido"
+            android:id="@+id/idPedido"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible"
             />
     </LinearLayout>
     <LinearLayout
@@ -65,20 +104,26 @@
         android:gravity="center"
         android:padding="10dp"
         >
-        <ImageView
+        <ImageButton
             android:layout_width="0dp"
             android:id="@+id/moto"
             android:layout_height="wrap_content"
             android:src="@drawable/scooter"
             android:layout_weight="1"
-            android:background="#FFFFFF"/>
-        <ImageView
+            android:background="#FFFFFF"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+        <ImageButton
             android:layout_width="0dp"
             android:id="@+id/cart"
             android:layout_height="wrap_content"
             android:src="@drawable/cart"
             android:background="#FFFFFF"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
 
 

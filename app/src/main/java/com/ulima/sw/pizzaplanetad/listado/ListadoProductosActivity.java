@@ -12,26 +12,31 @@ import android.view.MenuItem;
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import com.ulima.sw.pizzaplanetad.Adapter.ListadoProductosAdapter;
 import com.ulima.sw.pizzaplanetad.R;
-import com.ulima.sw.pizzaplanetad.Adapter.ListadoPizzasAdapter;
-import com.ulima.sw.pizzaplanetad.beans.Pizza;
+import com.ulima.sw.pizzaplanetad.beans.pedido.ProductoPedido;
 
 import java.util.List;
 
-public class ListadoPizzasActivity extends AppCompatActivity implements ListadoPizzasView, ObservableScrollViewCallbacks {
+public class ListadoProductosActivity extends AppCompatActivity implements ListadoProductosView, ObservableScrollViewCallbacks {
 
-    private ListadoPizzasPresenter lPresenter;
-    private ObservableListView lstPizzas;
+    private ListadoProductosPresenter lPresenter;
+    private ObservableListView lstProductos;
     private ProgressDialog dialog;
+    private int idPedido;
+    private ActionBar supportActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Listado Pizzas");
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setHomeButtonEnabled(true);
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        Intent intentPasado = getIntent();
 
-        setContentView(R.layout.activity_listado_pizzas);
+        setContentView(R.layout.activity_listado_productos);
 
         dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -41,27 +46,31 @@ public class ListadoPizzasActivity extends AppCompatActivity implements ListadoP
         dialog.show();
 
 
-        lstPizzas = (ObservableListView)findViewById(R.id.lstPizza);
-        lstPizzas.setScrollViewCallbacks(this);
+        lstProductos = (ObservableListView)findViewById(R.id.lstProductos);
+        lstProductos.setScrollViewCallbacks(this);
 
-        setPresenter(new ListadoPizzasPresenterImp(this));
-        Intent intentPasado = getIntent();
-       // lPresenter.obtenerListaP((List<Pizza>)intentPasado.getSerializableExtra("pizzas"));
+        setPresenter(new ListadoProductosPresenterImp(this));
+        idPedido=intentPasado.getIntExtra("id",0);
+        lPresenter.obtenerListaP(idPedido);
 
 
     }
 
     @Override
-    public void setPresenter(ListadoPizzasPresenter presenter) {
+    public void setPresenter(ListadoProductosPresenter presenter) {
         this.lPresenter = presenter;
     }
 
     @Override
-    public void mostrarPizzas(List<Pizza> Pizzas) {
-        ListadoPizzasAdapter adapter = new ListadoPizzasAdapter(Pizzas,this);
-        lstPizzas.setAdapter(adapter);
+    public void mostrarPedido(List<ProductoPedido> pedidos) {
+        ListadoProductosAdapter adapter = new ListadoProductosAdapter(pedidos,this);
+        lstProductos.setAdapter(adapter);
         dialog.dismiss();
+
     }
+
+
+
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
