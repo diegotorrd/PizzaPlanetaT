@@ -13,6 +13,7 @@ import com.ulima.sw.pizzaplanetad.Grid.GridPresenter;
 import com.ulima.sw.pizzaplanetad.R;
 import com.ulima.sw.pizzaplanetad.beans.pedido.Info;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -70,7 +71,9 @@ public class ListadoPedidosAdapter extends BaseAdapter {
         viewHolder.txtDireccion.setText(pedido.getDireccion());
         viewHolder.txtDistrito.setText(pedido.getDistrito());
         //viewHolder.idpedido.setText(pedido.getId());
-        viewHolder.txtMonto.setText("Monto: "+Float.toString( pedido.getMontoTot()));
+        DecimalFormat formatter = new DecimalFormat("#0.00");
+        String monto= formatter.format(pedido.getMontoTot());
+        viewHolder.txtMonto.setText("Monto: "+monto);
         if (pedido.getEstado() == 2) {
             viewHolder.imgE.setImageResource(R.drawable.verde);
         }else if (pedido.getEstado() == 3) {

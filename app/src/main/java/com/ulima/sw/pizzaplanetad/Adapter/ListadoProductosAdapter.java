@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.ulima.sw.pizzaplanetad.R;
 import com.ulima.sw.pizzaplanetad.beans.pedido.ProductoPedido;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -60,7 +61,9 @@ public class ListadoProductosAdapter extends BaseAdapter {
         acu = position +1;
         viewHolder.tviNum.setText("N#"+acu);
         viewHolder.tviNombre.setText("Nombre: "  + producto.getNombre());
-        viewHolder.tviPrecio.setText("Precio: " + producto.getPrecio());
+        DecimalFormat formatter = new DecimalFormat("#0.00");
+        String monto= formatter.format(producto.getPrecio());
+        viewHolder.tviPrecio.setText("Precio: " + monto);
         viewHolder.tviCantidad.setText("Cantidad: " + producto.getCantidad());
 
         //
